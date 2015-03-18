@@ -1,15 +1,15 @@
-//
-//  main.cpp
-//  lista-posfixada
-//
-//  Created by Diogo Martins on 3/18/15.
-//  Copyright (c) 2015 Diogo Martins. All rights reserved.
-//
-
 #include <iostream>
+#include <cstdlib>
+using namespace std;
+#include "posfixada.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main()
+{
+    posfixada ExpressaoPosFix;
+    
+    ExpressaoPosFix.le_expressao();
+    if (ExpressaoPosFix.avalia_expressao())
+        ExpressaoPosFix.imprime_resultado();
+    system("PAUSE");
     return 0;
 }
