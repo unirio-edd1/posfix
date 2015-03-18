@@ -15,6 +15,7 @@ private:
     // Aplica operador a 2 operandos e informa erros
     bool aplica_operador(const char Operator);
     bool is_digito(const char c);
+    int char_to_int(const char c);
     
 public:
     posfixada(int tamanho_pilha = 10, int tamanho_expressao = 50);
