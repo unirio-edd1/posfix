@@ -6,16 +6,17 @@
 //  Copyright (c) 2015 Diogo Martins. All rights reserved.
 //
 
-#include <stdio.h>
+#include <stdio.h> 
 #include "pilhaint.h"
 #include "posfixada.h"
 
 using namespace std;
 
-posfixada::posfixada(int tamanho_pilha, int tamanho_expressao){
-    expressao = new char[tamanho];
-    pilha = tamanho_pilha;
+posfixada::posfixada(int tamanho_pilha, int tamanho_expressao)
+{
+    pilha = pilhaint(tamanho_pilha);
     tamanho = tamanho_pilha;
+    expressao = new char[tamanho];
 }
 
 posfixada::~posfixada(){
@@ -34,8 +35,30 @@ bool posfixada::operador(const char simbolo) const{
     return false;
 }
 
-bool posfixada::aplica_operador(const char Operator){
-    return false;
+bool posfixada::aplica_operador(const char operador){
+    int op1, op2;
+    
+    if (! pilha.pop(op2)) return false;
+    if (! pilha.pop(op1)) return false;
+    
+    switch (operador) {
+        case '+':
+            pilha.push(op2+op1);
+            break;
+        case '-':
+            pilha.push(op1-op2);
+            break;
+        case '*':
+            pilha.push(op2*op1);
+            break;
+        case '/':
+            pilha.push(op1/op2);
+            break;
+        default:
+            return false;
+    }
+    
+    return true;
 }
 
 bool posfixada::is_digito(const char c){
@@ -54,10 +77,13 @@ bool posfixada::avalia_expressao(){
     int i = 0;
     char c;
     
-    while (expressao[i] != '\n'){
+    while (expressao[i] != '\0'){
         c = expressao[i];
         if (operador(c)){
-            aplica_operador(c);
+            if (! aplica_operador(c)){
+                cout << "ERRO ao aplicador operador \n";
+                return false;
+            }
         }
         else if (posfixada::is_digito(c)){
             pilha.push(char_to_int(c));
@@ -77,5 +103,9 @@ bool posfixada::avalia_expressao(){
         return false;
     }
     return true;
+}
+
+void posfixada::imprime_resultado(){
+    cout << "resultado " << resposta << endl;
 }
 
