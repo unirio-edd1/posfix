@@ -13,7 +13,7 @@ private:
     // verifica se simbolo eh um operador?
     bool operador(const char simbolo) const;
     // Aplica operador a 2 operandos e informa erros
-    bool aplica_operador(const char Operator);
+    bool aplica_operador(const char operador);
     bool is_digito(const char c);
     int char_to_int(const char c);
     

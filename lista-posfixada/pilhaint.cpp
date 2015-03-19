@@ -50,4 +50,4 @@ bool pilhaint::pilha_topo(int& elemento)
         return true;
     }
     else return false;
-}	
+}
