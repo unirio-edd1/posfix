@@ -1,111 +1,84 @@
-//
-//  posfixada.cpp
-//  lista-posfixada
-//
-//  Created by Diogo Martins on 3/18/15.
-//  Copyright (c) 2015 Diogo Martins. All rights reserved.
-//
-
-#include <stdio.h> 
-#include "pilhaint.h"
 #include "posfixada.h"
-
 using namespace std;
 
-posfixada::posfixada(int tamanho_pilha, int tamanho_expressao)
-{
-    pilha = pilhaint(tamanho_pilha);
-    tamanho = tamanho_pilha;
-    expressao = new char[tamanho];
-}
+posfixada::posfixada(int tamanho_pilha, int tamanho_expressao):
+pilha(tamanho_pilha),
+expressao(new char[tamanho_expressao]),
+tamanho(tamanho_expressao)
+{ }
 
-posfixada::~posfixada(){
+posfixada::~posfixada()
+{
     delete [] expressao;
 }
 
-void posfixada::le_expressao(){
-    cout << "Digite expressao pos fixada \n";
+// Le expressao para ser avaliada
+void posfixada::le_expressao()
+{
+    cout << "Entre com expressao posfixada: ";
     cin.getline(expressao, tamanho);
 }
 
-bool posfixada::operador(const char simbolo) const{
-    if (simbolo == '+' || simbolo == '-' || simbolo == '*' || simbolo == '/'){
+// Testa se simbolo corrente � um operador
+bool posfixada::operador(const char simbolo)  const
+{
+    if (simbolo == '*' || simbolo == '+' ||
+        simbolo == '-' || simbolo == '/')
         return true;
-    }
     return false;
 }
-
-bool posfixada::aplica_operador(const char operador){
-    int op1, op2;
+// Aplica operador aos dois simbolos do topo da pilha
+// Retorna verdadeiro se operacao realizada com sucesso,
+// falso caso contrario
+bool posfixada::aplica_operador(const char operador)
+{
+    int operando1, operando2;
     
-    if (! pilha.pop(op2)) return false;
-    if (! pilha.pop(op1)) return false;
+    // Desempilha dois operandos
+    if (!pilha.pop(operando1)) return false;
+    if (!pilha.pop(operando2)) return false;
     
     switch (operador) {
-        case '+':
-            pilha.push(op2+op1);
-            break;
-        case '-':
-            pilha.push(op1-op2);
-            break;
         case '*':
-            pilha.push(op2*op1);
-            break;
+            pilha.push(operando2 * operando1);  break;
+        case '+':
+            pilha.push(operando2 + operando1); break;
         case '/':
-            pilha.push(op1/op2);
-            break;
+            pilha.push(operando2 / operando1);  break;
+        case '-':
+            pilha.push(operando2 - operando1);  break;
         default:
             return false;
     }
-    
     return true;
 }
 
-bool posfixada::is_digito(const char c){
-    int n = int(c);
-    if (n >= int('0') && n <= int('9')){
-        return true;
-    }
-    return false;
-}
-
-int posfixada::char_to_int(const char c){
-    return int(c) - int('0');
-}
-
-bool posfixada::avalia_expressao(){
-    int i = 0;
-    char c;
+bool posfixada::avalia_expressao()
+{
+    int simbolo = 0;
     
-    while (expressao[i] != '\0'){
-        c = expressao[i];
-        if (operador(c)){
-            if (! aplica_operador(c)){
-                cout << "ERRO ao aplicador operador \n";
+    while(expressao[simbolo]) {
+        if (operador(expressao[simbolo])) {
+            if (!aplica_operador(expressao[simbolo])) {
+                cout << "Erro: poucos operadores\n";
                 return false;
             }
-        }
-        else if (posfixada::is_digito(c)){
-            pilha.push(char_to_int(c));
-        }
-        i++;
+        } else if (int(expressao[simbolo]) >= int('0')
+                   && int(expressao[simbolo]) <= int('9'))
+            pilha.push(int(expressao[simbolo])- int('0'));
+        simbolo++;
     }
-    if (!pilha.pop(resposta)){
-        cout << "ERRO ao desempilhar \n";
+    if (!pilha.pop(resposta)) {
+        cout << "Erro desempilhando resposta.\n";
         return false;
-    }
-    else if(! pilha.vazia()){
-        /* 
-         Ao desempilhar, o unico elemento deve ser o resultado. Se sobrar alguma coisa
-         algo deu errado
-         */
-        cout << "ERRO \n";
+    } else if (!pilha.vazia()) {
+        cout << "Erro: poucos operandos.\n";
         return false;
     }
     return true;
 }
 
-void posfixada::imprime_resultado(){
-    cout << "resultado " << resposta << endl;
+void posfixada::imprime_resultado() const
+{
+    cout << "Resposta = " << resposta << endl;
 }
-
