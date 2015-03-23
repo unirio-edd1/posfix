@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66F7448B1ABA249C00EB3068 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F7448A1ABA249C00EB3068 /* main.cpp */; };
+		66F744951ABA24E200EB3068 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F744911ABA24E200EB3068 /* main.cpp */; };
+		66F744961ABA24E200EB3068 /* pilhaint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F744921ABA24E200EB3068 /* pilhaint.cpp */; };
+		66F744981ABA26CE00EB3068 /* posfixada.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F744971ABA26CE00EB3068 /* posfixada.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +26,11 @@
 
 /* Begin PBXFileReference section */
 		66F744871ABA249C00EB3068 /* lista-posfixada */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lista-posfixada"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66F7448A1ABA249C00EB3068 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		66F744911ABA24E200EB3068 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		66F744921ABA24E200EB3068 /* pilhaint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pilhaint.cpp; sourceTree = "<group>"; };
+		66F744931ABA24E200EB3068 /* pilhaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pilhaint.h; sourceTree = "<group>"; };
+		66F744941ABA24E200EB3068 /* posfixada.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = posfixada.h; sourceTree = "<group>"; };
+		66F744971ABA26CE00EB3068 /* posfixada.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = posfixada.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +63,11 @@
 		66F744891ABA249C00EB3068 /* lista-posfixada */ = {
 			isa = PBXGroup;
 			children = (
-				66F7448A1ABA249C00EB3068 /* main.cpp */,
+				66F744911ABA24E200EB3068 /* main.cpp */,
+				66F744921ABA24E200EB3068 /* pilhaint.cpp */,
+				66F744931ABA24E200EB3068 /* pilhaint.h */,
+				66F744941ABA24E200EB3068 /* posfixada.h */,
+				66F744971ABA26CE00EB3068 /* posfixada.cpp */,
 			);
 			path = "lista-posfixada";
 			sourceTree = "<group>";
@@ -118,7 +128,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66F7448B1ABA249C00EB3068 /* main.cpp in Sources */,
+				66F744961ABA24E200EB3068 /* pilhaint.cpp in Sources */,
+				66F744951ABA24E200EB3068 /* main.cpp in Sources */,
+				66F744981ABA26CE00EB3068 /* posfixada.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
